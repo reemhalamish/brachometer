@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class ContactActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class ContactActivity extends AppCompatActivity {
         populateContacts();
         ListView contacts = (ListView)findViewById(R.id.lv_contacts);
         final ContatAdapter contactAdapter = new ContatAdapter(this, R.layout.contat_row, _allContactsList);
+        assert contacts != null;
         contacts.setAdapter(contactAdapter);
         findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,5 +66,6 @@ public class ContactActivity extends AppCompatActivity {
             tempContacts.add(value);
             _allContactsList.add(contact);
         }
+        Collections.sort(_allContactsList);
     }
 }
