@@ -28,13 +28,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_new_year:
-                Intent a = new Intent(this,SendActivity.class);
-                startActivity(a);
-                break;
             case R.id.btn_passover:
-                break;
             case R.id.btn_kippur:
-                break;
+                Intent a = new Intent(this,ContactActivity.class);
+                startActivity(a);
             default:
                 break;
         }

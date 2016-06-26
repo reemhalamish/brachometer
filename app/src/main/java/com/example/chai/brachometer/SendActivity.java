@@ -1,11 +1,15 @@
 package com.example.chai.brachometer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by chai on 26/06/2016.
@@ -15,18 +19,27 @@ public class SendActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
-        findViewById(R.id.btn_send).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String massge;
-                        //TODO: insert pone numbers
-                        massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), "חי");
-//                        SmsManager.getDefault().sendTextMessage(phone,null,massge,null,null);
-                        Toast.makeText(SendActivity.this,"נשלח",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }
-        );
+        Intent prevActivitySender = getIntent();
+        final Contact[] contactsToSendSmsTo =
+                (Contact[]) prevActivitySender.getSerializableExtra(ContactActivity.TAG_SET_CONTACTS);
+//
+//
+//        findViewById(R.id.btn_send).setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String massge;
+//                        for(ContactActivity.Contact contact : contactsToSendSmsTo){
+//                            massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), contact.name);
+//                            SmsManager.getDefault().sendTextMessage(contact.phone,null,massge,null,null);
+//                        }
+//                        Toast.makeText(SendActivity.this,"נשלח",Toast.LENGTH_SHORT).show();
+//                        Intent goToMain = new Intent(SendActivity.this, MainActivity.class);
+//                        goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(goToMain);
+//                        finish();
+//                    }
+//                }
+//        );
     }
 }
