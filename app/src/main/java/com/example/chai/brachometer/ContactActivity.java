@@ -2,17 +2,15 @@ package com.example.chai.brachometer;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+
 
 public class ContactActivity extends AppCompatActivity {
     private ArrayList<Contact> _allContactsList;
