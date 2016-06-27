@@ -21,7 +21,19 @@ public class SendActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
         Intent prevActivitySender = getIntent();
-
+        String massege = "";
+        switch (prevActivitySender.getIntExtra("originButton",0)){
+            case R.id.btn_passover:
+            case R.id.btn_new_year:
+                massege = "אהלן %s,\n חג שמח לך ולבני משפחתך!";
+                break;
+            case R.id.btn_kippur:
+                massege ="%s אני מאחל לך צום קל ומועיל";
+                break;
+            default:
+                break;
+        }
+        ((EditText )findViewById(R.id.txt_massge)).setText(massege);
         findViewById(R.id.btn_send).setOnClickListener(
                 new View.OnClickListener() {
                     @Override

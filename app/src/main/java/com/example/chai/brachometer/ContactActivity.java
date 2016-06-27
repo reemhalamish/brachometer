@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,7 +16,6 @@ import java.util.Collections;
 
 public class ContactActivity extends AppCompatActivity {
     private ArrayList<Contact> _allContactsList;
-    public static final String TAG_SET_CONTACTS = "chosenContactsSet";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +23,16 @@ public class ContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
         populateContacts();
         ListView contacts = (ListView)findViewById(R.id.lv_contacts);
+
         final ContatAdapter contactAdapter = new ContatAdapter(this, R.layout.contat_row, _allContactsList);
         assert contacts != null;
         contacts.setAdapter(contactAdapter);
         findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent prevActivitySender = getIntent();
                 Intent nextActivity = new Intent(ContactActivity.this,SendActivity.class);
-                nextActivity.putExtra(TAG_SET_CONTACTS,contactAdapter.get_chosenContactsSet());
+                nextActivity.putExtra("originButton", prevActivitySender.getIntExtra("originButton",0));
                 startActivity(nextActivity);
 
             }
