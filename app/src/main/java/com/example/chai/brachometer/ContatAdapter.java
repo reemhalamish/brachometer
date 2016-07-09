@@ -7,20 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by chai on 26/06/2016.
  */
 public class ContatAdapter extends ArrayAdapter<Contact> {
-    public static ArrayList<Contact> _chosenContactsSet = new ArrayList<>();
+    public static ArrayList<Contact> _chosenContacts = new ArrayList<>();
+    private ArrayList<Contact> _allContacts, _contactsToView;
 
     public ContatAdapter(Context context, int resource, ArrayList<Contact> objects) {
         super(context, resource, objects);
+        _allContacts = (ArrayList<Contact>) objects.clone();
+        _contactsToView = objects;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class ContatAdapter extends ArrayAdapter<Contact> {
         final Contact contact = super.getItem(position);
         tvPhone.setText(contact.phone);
         tvContact.setText(contact.name);
-        if(_chosenContactsSet.contains(contact)){
+        if(_chosenContacts.contains(contact)){
             tvPhone.setTextColor(Color.BLUE);
             tvContact.setTextColor(Color.BLUE);
         }
@@ -43,13 +45,13 @@ public class ContatAdapter extends ArrayAdapter<Contact> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(_chosenContactsSet.contains(contact)){
-                    _chosenContactsSet.remove(contact);
+                if(_chosenContacts.contains(contact)){
+                    _chosenContacts.remove(contact);
                     tvPhone.setTextColor(Color.BLACK);
                     tvContact.setTextColor(Color.BLACK);
                 }
                 else{
-                    _chosenContactsSet.add(contact);
+                    _chosenContacts.add(contact);
                     tvPhone.setTextColor(Color.BLUE);
                     tvContact.setTextColor(Color.BLUE);
                 }
@@ -59,7 +61,45 @@ public class ContatAdapter extends ArrayAdapter<Contact> {
         return view;
     }
 
-    public ArrayList<Contact> get_chosenContactsSet() {
-        return _chosenContactsSet;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();
+                if (constraint == null || constraint.length() == 0) {
+                    _contactsToView = _allContacts;
+                    results.count = _contactsToView.size();
+                    results.values = _contactsToView;
+                    return results;
+                }
+
+                String toFilter = constraint.toString();
+                _contactsToView = new ArrayList<>();
+                for (Contact contact : _allContacts) {
+                    if (contact.contains(toFilter)) {
+                        _contactsToView.add(contact);
+                    }
+                }
+                results.count = _contactsToView.size();
+                results.values = _contactsToView;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                _contactsToView = (ArrayList<Contact>) results.values;
+                clear();
+                addAll(_contactsToView);
+                notifyDataSetChanged();
+            }
+        };
     }
+
+    //    public ArrayList<Contact> get_chosenContactsSet() {
+//        return _chosenContacts;
+//    }
 }
