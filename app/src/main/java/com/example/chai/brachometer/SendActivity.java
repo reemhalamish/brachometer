@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 /**
  * Created by chai on 26/06/2016.
+ * activity to send the messages
  */
 public class SendActivity extends Activity {
     @Override
@@ -39,7 +36,7 @@ public class SendActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         String massge;
-                        for(Contact contact : ContatAdapter._chosenContactsSet){
+                        for(Contact contact : ContatAdapter._chosenContacts){
                             massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), contact.name);
                             SmsManager.getDefault().sendTextMessage(contact.phone,null,massge,null,null);
                         }
