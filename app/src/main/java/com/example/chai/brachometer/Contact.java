@@ -1,6 +1,9 @@
 package com.example.chai.brachometer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +36,9 @@ public class Contact implements Serializable, Comparable<Contact> {
 
     public boolean contains(String text) {
         return name.toLowerCase().contains(text.toLowerCase()) || phone.toLowerCase().contains(text.toLowerCase());
+    }
+
+    public List<String> getSplitedName(){
+        return Arrays.asList(name.split(" "));
     }
 }
