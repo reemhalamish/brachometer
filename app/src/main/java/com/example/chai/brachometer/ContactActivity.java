@@ -31,7 +31,7 @@ public class ContactActivity extends AppCompatActivity {
         populateContacts();
         ListView contacts = (ListView)findViewById(R.id.lv_contacts);
 
-        final ContatAdapter contactAdapter = new ContatAdapter(this, R.layout.contat_row, _allContactsList);
+        final ContactChooseAdapter contactAdapter = new ContactChooseAdapter(this, R.layout.contat_row, _allContactsList);
         assert contacts != null;
         contacts.setAdapter(contactAdapter);
         findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {

@@ -23,10 +23,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Contact implements Serializable, Comparable<Contact> {
-    @Getter @Setter @NonNull String name;
-    @Getter @Setter @NonNull String phone;
-    @Getter @Setter String firstName;
-    @Getter @Setter String lastName;
+    @Getter @Setter @NonNull private String name;
+    @Getter @Setter @NonNull private String phone;
+    @Getter @Setter private String firstName;
+    @Getter @Setter private String lastName;
 
 
     @Override
