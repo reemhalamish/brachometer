@@ -1,6 +1,5 @@
 package com.example.chai.brachometer;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -38,7 +36,7 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent prevActivitySender = getIntent();
-                Intent nextActivity = new Intent(ContactActivity.this,SendActivity.class);
+                Intent nextActivity = new Intent(ContactActivity.this,EditContactActivity.class);
                 nextActivity.putExtras(prevActivitySender.getExtras());
                 startActivity(nextActivity);
 
@@ -100,7 +98,7 @@ public class ContactActivity extends AppCompatActivity {
         _allContactsList = new ArrayList<>();
         for (int i = 0; i < allContacts.size(); i++) {
             Contact contact = allContacts.get(i);
-            String value = contact.name + " " + contact.phone;
+            String value = contact.getName() + " " + contact.getPhone();
             if (tempContacts.contains(value)) continue;
             tempContacts.add(value);
             _allContactsList.add(contact);
