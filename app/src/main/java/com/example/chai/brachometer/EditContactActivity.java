@@ -53,6 +53,7 @@ public class EditContactActivity extends AppCompatActivity {
             for(final String s: contact.getSplitedName()) {
                 final TextView view = new TextView(getContext());
                 view.setText(s);
+                view.setPadding(5,0,5,0);
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
