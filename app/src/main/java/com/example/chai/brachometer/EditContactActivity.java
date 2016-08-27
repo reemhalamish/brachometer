@@ -3,9 +3,8 @@ package com.example.chai.brachometer;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,7 @@ public class EditContactActivity extends AppCompatActivity {
             TextView _defaultTextView;
             Contact _contact;
 
-            public HorizontalLinearRow(Context context,Contact contact) {
+            HorizontalLinearRow(Context context, Contact contact) {
                 super(context);
                 _contact = contact;
                 super.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -48,7 +47,7 @@ public class EditContactActivity extends AppCompatActivity {
             }
 
         }
-        public ContactAdapter(Context context, int resource, ArrayList<Contact> objects) {
+        ContactAdapter(Context context, int resource, ArrayList<Contact> objects) {
             super(context, resource,objects);
         }
         @Override
@@ -62,8 +61,6 @@ public class EditContactActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (v.getId() != view.getId()) {
-                        }
                         root.setDefault(s,view);
                     }
                 });
@@ -76,10 +73,12 @@ public class EditContactActivity extends AppCompatActivity {
             return root;
         }
     }
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        findViewById(R.id.edt_contact).setVisibility(View.GONE);
         ListView lv = (ListView) findViewById(R.id.lv_contacts);
         lv.setAdapter(new ContactAdapter(this,0, ContactChooseAdapter._chosenContacts));
         findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {

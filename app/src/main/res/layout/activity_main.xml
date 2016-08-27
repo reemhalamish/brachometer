@@ -6,21 +6,30 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ראש השנה"
+        android:text="@string/new_years"
         android:id="@+id/btn_new_year"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="יום כיפור"
+        android:text="@string/Fast_day"
         android:id="@+id/btn_kippur"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="פסח"
+        android:text="@string/holidays"
         android:id="@+id/btn_passover"
         android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/other"
+        android:id="@+id/btn_other"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

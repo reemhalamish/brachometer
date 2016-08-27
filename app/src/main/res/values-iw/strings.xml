@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ברכומטר</string>
+    <string name="holliday_wish">אהלן §,\n חג שמח לך ולבני משפחתך!</string>
+    <string name="fast_wish">§ אני מאחל לך צום קל ומועיל</string>
+    <string name="special_chr">§</string>
+    <string name="sent">נשלח</string>
+    <string name="new_years">ראש השנה</string>
+    <string name="Fast_day">יום צום</string>
+    <string name="holidays">חגים</string>
+    <string name="other">אחר</string>
+    <string name="send">שלח!</string>
+    <string name="add_username">הוסף כאן שם פרטי</string>
+    <string name="write_massge">כתוב הודעה</string>
+
+</resources>

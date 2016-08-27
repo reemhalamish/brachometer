@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Brachometer</string>
+    <string name="holliday_wish">hi §, Happy Holiday!</string>
+    <string name="fast_wish">§ I wish you to fast well</string>
+    <string name="special_chr">§</string>
+    <string name="sent">sent</string>
+    <string name="TAG_BUTTON_PRESSED" translatable="false">originButton</string>
+    <string name="new_years">new years</string>
+    <string name="Fast_day">Fast</string>
+    <string name="holidays">holidays</string>
+    <string name="other">other</string>
+    <string name="send">send!</string>
+    <string name="add_username">insert first name here</string>
+    <string name="write_massge">write a massage</string>
 </resources>
