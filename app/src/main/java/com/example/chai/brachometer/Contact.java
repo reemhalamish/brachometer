@@ -19,14 +19,19 @@ import lombok.Setter;
  * Contact
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class Contact implements Serializable, Comparable<Contact> {
     @Getter @Setter @NonNull private String name;
     @Getter @Setter @NonNull private String phone;
     @Getter @Setter private String firstName;
     @Getter @Setter private String lastName;
+
+    public Contact(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+        List<String> split = getSplitedName();
+        this.firstName = split.get(0);
+        this.lastName = split.get(split.size() - 1);
+    }
 
 
     @Override

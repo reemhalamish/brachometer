@@ -40,6 +40,7 @@ public class SendActivity extends Activity {
                             massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), contact.getFirstName());
                             SmsManager.getDefault().sendTextMessage(contact.getPhone(),null,massge,null,null);
                         }
+                        ContactChooseAdapter._chosenContacts.clear();
                         Toast.makeText(SendActivity.this,"נשלח",Toast.LENGTH_SHORT).show();
                         Intent goToMain = new Intent(SendActivity.this, MainActivity.class);
                         goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -3,8 +3,10 @@ package com.example.chai.brachometer;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class EditContactActivity extends AppCompatActivity {
+    private static final String TAG = "edit_contact";
     private class ContactAdapter extends ArrayAdapter<Contact> {
         private class HorizontalLinearRow extends LinearLayout{
             TextView _defaultTextView;
@@ -28,15 +31,17 @@ public class EditContactActivity extends AppCompatActivity {
             }
 
             void setDefault(String s, TextView tv) {
+                Log.d(TAG, "setting default: " + s);
                 _contact.setFirstName(s);
                 if (_defaultTextView != null) {
-                    _defaultTextView.setBackgroundColor(Color.WHITE);// need to get default color TODO
-                    _defaultTextView.setTextColor(Color.BLACK);  // need to get default color TODO
+                    _defaultTextView.setBackgroundColor(Color.TRANSPARENT);
+                    int textColor = new TextView(EditContactActivity.this).getCurrentTextColor(); // get android's default text color
+                    _defaultTextView.setTextColor(textColor);
                 }
 
 
                 _defaultTextView = tv;
-                _defaultTextView.setText(s);
+//                _defaultTextView.setText(s);
                 _defaultTextView.setBackgroundColor(Color.BLUE);
                 _defaultTextView.setTextColor(Color.WHITE);
 
@@ -53,16 +58,21 @@ public class EditContactActivity extends AppCompatActivity {
             for(final String s: contact.getSplitedName()) {
                 final TextView view = new TextView(getContext());
                 view.setText(s);
-                view.setPadding(5,0,5,0);
+                view.setPadding(10,0,10,0);
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (v.getId() != view.getId()) {
+                        }
                         root.setDefault(s,view);
                     }
                 });
                 root.addView(view);
+                if (s.equals(contact.getFirstName()))
+                    root._defaultTextView = view;
             }
-            root.getChildAt(0).performClick();
+//            root.getChildAt(0).performClick();
+            root.setDefault(contact.getFirstName(), root._defaultTextView);
             return root;
         }
     }
