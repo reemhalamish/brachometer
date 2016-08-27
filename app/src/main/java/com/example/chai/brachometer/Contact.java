@@ -1,6 +1,9 @@
 package com.example.chai.brachometer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +23,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Contact implements Serializable, Comparable<Contact> {
-    @Getter @Setter @NonNull String name;
-    @Getter @Setter @NonNull String phone;
-    @Getter @Setter String firstName;
-    @Getter @Setter String lastName;
+    @Getter @Setter @NonNull private String name;
+    @Getter @Setter @NonNull private String phone;
+    @Getter @Setter private String firstName;
+    @Getter @Setter private String lastName;
 
 
     @Override
@@ -33,5 +36,9 @@ public class Contact implements Serializable, Comparable<Contact> {
 
     public boolean contains(String text) {
         return name.toLowerCase().contains(text.toLowerCase()) || phone.toLowerCase().contains(text.toLowerCase());
+    }
+
+    public List<String> getSplitedName(){
+        return Arrays.asList(name.split(" "));
     }
 }

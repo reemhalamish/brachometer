@@ -36,9 +36,9 @@ public class SendActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         String massge;
-                        for(Contact contact : ContatAdapter._chosenContacts){
-                            massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), contact.name);
-                            SmsManager.getDefault().sendTextMessage(contact.phone,null,massge,null,null);
+                        for(Contact contact : ContactChooseAdapter._chosenContacts){
+                            massge = String.format(((EditText) findViewById(R.id.txt_massge)).getText().toString(), contact.getFirstName());
+                            SmsManager.getDefault().sendTextMessage(contact.getPhone(),null,massge,null,null);
                         }
                         Toast.makeText(SendActivity.this,"נשלח",Toast.LENGTH_SHORT).show();
                         Intent goToMain = new Intent(SendActivity.this, MainActivity.class);

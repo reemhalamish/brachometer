@@ -15,11 +15,11 @@ import java.util.ArrayList;
 /**
  * Created by chai on 26/06/2016.
  */
-public class ContatAdapter extends ArrayAdapter<Contact> {
+public class ContactChooseAdapter extends ArrayAdapter<Contact> {
     public static ArrayList<Contact> _chosenContacts = new ArrayList<>();
     private ArrayList<Contact> _allContacts, _contactsToView;
 
-    public ContatAdapter(Context context, int resource, ArrayList<Contact> objects) {
+    public ContactChooseAdapter(Context context, int resource, ArrayList<Contact> objects) {
         super(context, resource, objects);
         _allContacts = (ArrayList<Contact>) objects.clone();
         _contactsToView = objects;
@@ -32,8 +32,8 @@ public class ContatAdapter extends ArrayAdapter<Contact> {
         final TextView tvPhone = (TextView) view.findViewById(R.id.tv_phone);
         final TextView tvContact = (TextView) view.findViewById(R.id.tv_name);
         final Contact contact = super.getItem(position);
-        tvPhone.setText(contact.phone);
-        tvContact.setText(contact.name);
+        tvPhone.setText(contact.getPhone());
+        tvContact.setText(contact.getName());
         if(_chosenContacts.contains(contact)){
             tvPhone.setTextColor(Color.BLUE);
             tvContact.setTextColor(Color.BLUE);
