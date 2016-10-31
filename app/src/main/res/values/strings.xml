@@ -12,4 +12,15 @@
     <string name="send">send!</string>
     <string name="add_username">insert first name here</string>
     <string name="write_massge">write a massage</string>
+    <string name="confirm_send_msg">You are about to send %d message(s), Charges from your carrier may apply. Sure to continue?</string>
+    <string name="confirm_send_title">Confirm Sending</string>
+    <string name="explanation_edit_contact">Please make sure that all the first names are marked in blue. If you see an un-marked first name, please tap on it.</string>
+    <string name="continue_abc">Continue</string>
+    <string name="hint_search_contact">Insert name or phone-number to search</string>
+    <string name="hannukah">Hannukah</string>
+    <string name="christmas">Christmas</string>
+    <string name="hannukah_wish">§ Happy Hannukah!</string>
+    <string name="xmas_wish">§ I wish you a Merry Christmas! Ho Ho Ho</string>
+    <string name="multiply_toggle_off"><![CDATA[Don\'t multiply last letter (Albert)]]></string>
+    <string name="multiply_toggle_on"><![CDATA[Multiply last letter (Alberttt)]]></string>
 </resources>

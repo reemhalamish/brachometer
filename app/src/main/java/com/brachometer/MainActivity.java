@@ -1,4 +1,4 @@
-package com.example.chai.brachometer;
+package com.brachometer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             findViewById(R.id.btn_new_year),
             findViewById(R.id.btn_kippur),
             findViewById(R.id.btn_other),
+            findViewById(R.id.btn_xmas),
+            findViewById(R.id.btn_hannukah),
             findViewById(R.id.btn_passover)};
         for (View btn : btns){
             btn.setOnClickListener(this);
@@ -28,7 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        Intent nextActivity = new Intent(this,ContactActivity.class);
+        Intent nextActivity = new Intent(this, com.brachometer.ContactActivity.class);
         nextActivity.putExtra(getString(R.string.TAG_BUTTON_PRESSED), v.getId());
         startActivity(nextActivity);
     }

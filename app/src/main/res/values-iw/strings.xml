@@ -11,5 +11,16 @@
     <string name="send">שלח!</string>
     <string name="add_username">הוסף כאן שם פרטי</string>
     <string name="write_massge">כתוב הודעה</string>
+    <string name="confirm_send_msg">%d הודעות יישלחו אוטומטית. המפעיל שלך עלול לחייב אותך על הודעות טקסט. להמשיך?</string>
+    <string name="confirm_send_title">אישור שליחה</string>
+    <string name="explanation_edit_contact">אנא ודא כי השם הפרטי של כל הנמענים מסומן בכחול. אם לא, לחיצה על השם הפרטי תפתור את הבעיה</string>
+    <string name="continue_abc">המשך</string>
+    <string name="hint_search_contact">הקלד שם או מספר טלפון כדי לחפש</string>
+    <string name="hannukah">חנוכה</string>
+    <string name="christmas">ניטל</string>
+    <string name="hannukah_wish">§ חג אורים שמח!</string>
+    <string name="xmas_wish">§ שריפה אחים שריפה</string>
+    <string name="multiply_toggle_off">הכפל את האות האחרונה (דורין -> דוריןןן) כבוי</string>
+    <string name="multiply_toggle_on">הכפל את האות האחרונה (דורין -> דוריןןן) מופעל</string>
 
 </resources>

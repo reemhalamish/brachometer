@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.example.chai.brachometer"
+        applicationId "com.brachometer"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1

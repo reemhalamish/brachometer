@@ -1,4 +1,4 @@
-package com.example.chai.brachometer;
+package com.brachometer;
 
 import android.content.Context;
 import android.graphics.Color;

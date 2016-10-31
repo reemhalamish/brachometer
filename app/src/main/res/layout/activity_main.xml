@@ -28,6 +28,20 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/hannukah"
+        android:id="@+id/btn_hannukah"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/christmas"
+        android:id="@+id/btn_xmas"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/other"
         android:id="@+id/btn_other"
         android:layout_gravity="center_horizontal" />

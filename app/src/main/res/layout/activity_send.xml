@@ -19,6 +19,14 @@
         android:text="@string/add_username"
         android:id="@+id/btn_special_chr"
         android:layout_gravity="center_horizontal" />
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="@string/multiply_toggle_off"
+        android:textOn="@string/multiply_toggle_on"
+
+        android:id="@+id/tgb_send"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,6 +34,7 @@
         android:text="@string/send"
         android:id="@+id/btn_send"
         android:layout_gravity="center_horizontal" />
+
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.chai.brachometer;
+package com.brachometer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -77,8 +77,8 @@ public class EditContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
-        findViewById(R.id.edt_contact).setVisibility(View.GONE);
+        setContentView(R.layout.activity_edit_contact);
+//        findViewById(R.id.edt_contact).setVisibility(View.GONE);
         ListView lv = (ListView) findViewById(R.id.lv_contacts);
         lv.setAdapter(new ContactAdapter(this,0, ContactChooseAdapter._chosenContacts));
         findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {

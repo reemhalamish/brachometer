@@ -1,4 +1,4 @@
-package com.example.chai.brachometer;
+package com.brachometer;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.brachometer.Contact;
 
 import java.util.ArrayList;
 import java.util.Collections;
