@@ -2,17 +2,15 @@ package com.brachometer;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.brachometer.Contact;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,5 +104,42 @@ public class ContactActivity extends AppCompatActivity {
             _allContactsList.add(contact);
         }
         Collections.sort(_allContactsList);
+
+//        String[] fakeNames = new String[]{
+//                "Alan Turing",
+//                "Augustus De Morgan",
+//                "Gandalf the Grey",
+//                "Albus Percival Wulfric Brian Dumbledore",
+//                "Albert Einstein",
+//                "John Galt",
+//                "George Orwell",
+//                "Yeshayahu Leibowitz",
+//                "Ender Wiggin",
+//                "Augustin-Louis Cauchy",
+//                "Aviv Tsenzor",
+//                "Hezzy Laplacian",
+//                "Gottfried Wilhelm Leibniz",
+//        };
+//
+//        String[] fakePhones = new String[] {
+//                "0101011010",
+//                "2222222222",
+//                "+999-123456789",
+//                "0500999999",
+//                "0299792458",
+//                "0576225446",
+//                "0519841984",
+//                "0529011808",
+//                "+666-55334210",
+//                "123344555",
+//                "04-9876543",
+//                "053357777",
+//                "248163264"
+//        };
+//
+//        for (int i=0; i < fakeNames.length; i++) {
+//            _allContactsList.add(new Contact(fakeNames[i], fakePhones[i]));
+//            _allPhoneNumbers.add(fakePhones[i]);
+//        }
     }
 }
