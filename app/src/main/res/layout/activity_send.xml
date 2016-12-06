@@ -35,6 +35,14 @@
         android:id="@+id/btn_send"
         android:layout_gravity="center_horizontal" />
 
+<Space
+    android:layout_width="wrap_content"
+    android:layout_height="64dp" />
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_switch"
+        android:gravity="center"
+        />
 </LinearLayout>

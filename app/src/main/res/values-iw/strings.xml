@@ -22,5 +22,6 @@
     <string name="xmas_wish">§ שריפה אחים שריפה</string>
     <string name="multiply_toggle_off">הכפל את האות האחרונה (דורין -> דוריןןן) כבוי</string>
     <string name="multiply_toggle_on">הכפל את האות האחרונה (דורין -> דוריןןן) מופעל</string>
+    <string name="hint_switch">אנחנו נחליף את הסימן § בשם הפרטי של כל אדם שהוספת קודם</string>
 
 </resources>
