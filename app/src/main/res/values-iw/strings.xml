@@ -2,7 +2,6 @@
     <string name="app_name">ברכומטר</string>
     <string name="holliday_wish">אהלן §,\n חג שמח לך ולבני משפחתך!</string>
     <string name="fast_wish">§ אני מאחל לך צום קל ומועיל</string>
-    <string name="special_chr">§</string>
     <string name="sent">נשלח</string>
     <string name="new_years">ראש השנה</string>
     <string name="Fast_day">יום צום</string>
@@ -19,9 +18,9 @@
     <string name="hannukah">חנוכה</string>
     <string name="christmas">ניטל</string>
     <string name="hannukah_wish">§ חג אורים שמח!</string>
-    <string name="xmas_wish">§ שריפה אחים שריפה</string>
-    <string name="multiply_toggle_off">הכפל את האות האחרונה (דורין -> דוריןןן) כבוי</string>
-    <string name="multiply_toggle_on">הכפל את האות האחרונה (דורין -> דוריןןן) מופעל</string>
+    <string name="xmas_wish">§ חג מולד שמח!</string>
+    <string name="multiply_toggle_off">אל תכפיל את האות האחרונה (דורין)</string>
+    <string name="multiply_toggle_on">הכפל את האות האחרונה (דוריןןן)</string>
     <string name="hint_switch">אנחנו נחליף את הסימן § בשם הפרטי של כל אדם שהוספת קודם</string>
 
 </resources>

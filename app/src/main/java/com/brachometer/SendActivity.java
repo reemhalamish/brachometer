@@ -51,6 +51,7 @@ public class SendActivity extends Activity {
         _txtMsgInput = (EditText)findViewById(R.id.txt_massge);
         _txtMsgInput.setText(massege);
         _tgbMultiplyLast = (ToggleButton) findViewById(R.id.tgb_send);
+        _tgbMultiplyLast.setChecked(true);
 
         findViewById(R.id.btn_send).setOnClickListener(
                 new View.OnClickListener() {
