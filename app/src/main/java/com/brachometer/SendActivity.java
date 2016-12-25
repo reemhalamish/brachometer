@@ -1,10 +1,13 @@
 package com.brachometer;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +15,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by chai on 26/06/2016.
  * activity to send the messages
  */
-public class SendActivity extends Activity {
+public class SendActivity extends AppCompatActivity {
+    static final int REQUEST_ASK_PERMISSIONS_SMS = 12346;
+    protected final static List<String> _fs_smsPermissions;
+    static {
+        _fs_smsPermissions = new ArrayList<>();
+        _fs_smsPermissions.add(Manifest.permission.SEND_SMS);
+    }
+
     EditText _txtMsgInput;
     String _specialChar;
     ToggleButton _tgbMultiplyLast;
+    boolean _shouldSndSmsAfterPermission = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +78,12 @@ public class SendActivity extends Activity {
                                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        sendMasseges();
+                                        if (isPermissionsSms()) {
+                                            sendMasseges();
+                                        } else {
+                                            _shouldSndSmsAfterPermission = true;
+                                            askUserPermissionSms();
+                                        }
                                     }
                                 }).create().show();
                     }
@@ -78,6 +97,42 @@ public class SendActivity extends Activity {
                 _txtMsgInput.getText().insert(_txtMsgInput.getSelectionStart(), _specialChar);
             }
         });
+    }
+
+    private boolean isPermissionsSms() {
+        return PermissionAsker.isAuthorised(this, _fs_smsPermissions);
+    }
+
+    private void askUserPermissionSms() {
+        PermissionAsker.askPermissions(this, _fs_smsPermissions, REQUEST_ASK_PERMISSIONS_SMS);
+    }
+
+    /**
+     * Callback for the result from requesting permissions. This method
+     * is invoked for every call on {@link #requestPermissions(String[], int)}.
+     * <p>
+     * <strong>Note:</strong> It is possible that the permissions request interaction
+     * with the user is interrupted. In this case you will receive empty permissions
+     * and results arrays which should be treated as a cancellation.
+     * </p>
+     *
+     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
+     * @param permissions  The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
+     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
+     * @see #requestPermissions(String[], int)
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_ASK_PERMISSIONS_SMS) {
+            if (isPermissionsSms() && _shouldSndSmsAfterPermission) {
+                sendMasseges();
+                _shouldSndSmsAfterPermission = false;
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     private void sendMasseges() {

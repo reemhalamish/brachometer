@@ -1,9 +1,12 @@
 package com.brachometer;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,12 +16,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 
 public class ContactActivity extends AppCompatActivity {
     private static final String TAG = "contacts";
+    static final int REQUEST_ASK_PERMISSIONS_CONTACTS = 12345;
+    protected final static List<String> _fs_contactsPermissions = Arrays.asList(
+            Manifest.permission.WRITE_CONTACTS,
+            Manifest.permission.READ_CONTACTS
+    );
+
+
     private ArrayList<Contact> _allContactsList;
     private HashSet<String> _allPhoneNumbers;
 
@@ -26,41 +38,20 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        populateContacts();
-        ListView contacts = (ListView)findViewById(R.id.lv_contacts);
+        if (isOkPopulateContacts()) {
+            populateContacts();
+            showContactsOnScreen();
+        } else {
+            askUserToEnableContacts();
+        }
+    }
 
-        final ContactChooseAdapter contactAdapter = new ContactChooseAdapter(this, R.layout.contat_row, _allContactsList);
-        assert contacts != null;
-        contacts.setAdapter(contactAdapter);
-        findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent prevActivitySender = getIntent();
-                Intent nextActivity = new Intent(ContactActivity.this,EditContactActivity.class);
-                nextActivity.putExtras(prevActivitySender.getExtras());
-                startActivity(nextActivity);
+    protected boolean isOkPopulateContacts() {
+        return PermissionAsker.isAuthorised(this, _fs_contactsPermissions);
+    }
 
-            }
-        });
-
-
-        EditText edtFindContact = (EditText) findViewById(R.id.edt_contact);
-        edtFindContact.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                contactAdapter.getFilter().filter(s.toString());
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+    protected void askUserToEnableContacts() {
+        PermissionAsker.askPermissions(this, _fs_contactsPermissions, REQUEST_ASK_PERMISSIONS_CONTACTS);
     }
 
     /**
@@ -141,5 +132,76 @@ public class ContactActivity extends AppCompatActivity {
 //            _allContactsList.add(new Contact(fakeNames[i], fakePhones[i]));
 //            _allPhoneNumbers.add(fakePhones[i]);
 //        }
+    }
+
+    protected void showContactsOnScreen() {
+        ListView contacts = (ListView)findViewById(R.id.lv_contacts);
+
+        final ContactChooseAdapter contactAdapter = new ContactChooseAdapter(this, R.layout.contat_row, _allContactsList);
+        assert contacts != null;
+        contacts.setAdapter(contactAdapter);
+        findViewById(R.id.btn_finish_contact).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent prevActivitySender = getIntent();
+                Intent nextActivity = new Intent(ContactActivity.this,EditContactActivity.class);
+                nextActivity.putExtras(prevActivitySender.getExtras());
+                startActivity(nextActivity);
+
+            }
+        });
+
+
+        EditText edtFindContact = (EditText) findViewById(R.id.edt_contact);
+        edtFindContact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                contactAdapter.getFilter().filter(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    /**
+     * Callback for the result from requesting permissions. This method
+     * is invoked for every call on {@link #requestPermissions(String[], int)}.
+     * <p>
+     * <strong>Note:</strong> It is possible that the permissions request interaction
+     * with the user is interrupted. In this case you will receive empty permissions
+     * and results arrays which should be treated as a cancellation.
+     * </p>
+     *
+     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
+     * @param permissions  The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
+     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
+     * @see #requestPermissions(String[], int)
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_ASK_PERMISSIONS_CONTACTS) {
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    askUserToEnableContacts();
+                    return;
+                }
+            }
+
+            // all permissions granted
+            populateContacts();
+            showContactsOnScreen();
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }
